@@ -1,0 +1,45 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="E2E API Automation Suite" verbose="2" thread-count="1" parallel="tests">
+	<listeners>
+		<listener class-name="com.qa.api.Listeners.ExtentReportListener" />
+	</listeners>
+	<test name="GoRest API GetUser Test">
+		<parameter name="baseURI" value="https://gorest.co.in" />
+		<classes>
+			<class name="com.qa.api.testcases.GetUserTest" />
+		</classes>
+	</test>
+	<test name="GoRest API CreateUser Test">
+		<parameter name="baseURI" value="https://gorest.co.in" />
+		<classes>
+			<class name="com.qa.api.testcases.CreateUserTest" />
+		</classes>
+	</test>
+	<test name="GetcurcuitData API Test">
+		<parameter name="baseURI" value="http://ergast.com" />
+		<classes>
+			<class name="com.qa.api.testcases.GetCircuitDataTest" />
+		</classes>
+	</test>
+	<test name="GoRest API UpdateUser Test">
+		<parameter name="baseURI" value="https://gorest.co.in" />
+		<classes>
+			<class name="com.qa.api.testcases.UpdateUserTest" />
+		</classes>
+	</test>
+	<test name="GoRest API DeleteUser Test">
+		<parameter name="baseURI" value="https://gorest.co.in" />
+		<classes>
+			<class name="com.qa.api.testcases.DeleteUserTest" />
+		</classes>
+	</test>
+	<test name="GetFlightDestinations API Test">
+		<parameter name="baseURI" value="https://test.api.amadeus.com" />
+		<parameter name="grantType" value="client_credentials" />
+		<parameter name="client_id" value="nfXDZqvRYZ5YgdkBWThkPASivqMpy6Kj" />
+		<parameter name="client_secret" value="8Nw7MrQxgm2KodQK" />
+		<classes>
+			<class name="com.qa.api.testcases.GetFlightBookingTest" />
+		</classes>
+	</test>
+</suite>
