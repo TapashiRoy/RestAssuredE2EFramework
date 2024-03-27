@@ -22,7 +22,7 @@ public class GetFlightBookingTest extends BaseTest {
 	@BeforeMethod
 	public void getFlightAPISetup(String baseURI, String grantType, String client_id, String client_secret) {
 		rc = new restClient(prop, baseURI);
-		accessToken = rc.getAccessTokenViaOAuth2(AMADEUS_TOKEN_ENDPOINT, grantType, client_id, client_secret);
+		accessToken = rc.getAccessTokenViaOAuth2(AMADEUS_TOKEN_ENDPOINT, grantType, client_id, client_secret);		
 	}
 
 	@Test

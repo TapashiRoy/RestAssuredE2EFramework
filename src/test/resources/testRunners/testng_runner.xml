@@ -42,4 +42,10 @@
 			<class name="com.qa.api.testcases.GetFlightBookingTest" />
 		</classes>
 	</test>
+	<test name="GoRest Schema Validation Test">
+		<parameter name="baseURI" value="https://gorest.co.in" />
+		<classes>
+			<class name="com.qa.api.testcases.APISchemaValidationTest" />
+		</classes>
+	</test>
 </suite>
