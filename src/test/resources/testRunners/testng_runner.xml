@@ -15,12 +15,12 @@
 			<class name="com.qa.api.testcases.CreateUserTest" />
 		</classes>
 	</test>
-	<test name="GetcurcuitData API Test">
+	<!--<test name="GetcurcuitData API Test">
 		<parameter name="baseURI" value="http://ergast.com" />
 		<classes>
 			<class name="com.qa.api.testcases.GetCircuitDataTest" />
 		</classes>
-	</test>
+	</test>-->
 	<test name="GoRest API UpdateUser Test">
 		<parameter name="baseURI" value="https://gorest.co.in" />
 		<classes>

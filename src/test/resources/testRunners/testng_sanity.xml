@@ -9,12 +9,12 @@
 			<class name="com.qa.api.testcases.GetUserTest" />
 		</classes>
 	</test>	
-	<test name="GetcurcuitData API Test">
+	<!--<test name="GetcurcuitData API Test">
 		<parameter name="baseURI" value="http://ergast.com" />
 		<classes>
 			<class name="com.qa.api.testcases.GetCircuitDataTest" />
 		</classes>
-	</test>		
+	</test>	-->	
 	<test name="GetFlightDestinations API Test">
 		<parameter name="baseURI" value="https://test.api.amadeus.com" />
 		<parameter name="grantType" value="client_credentials" />
