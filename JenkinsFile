@@ -1,0 +1,106 @@
+pipeline 
+{
+    agent any
+    
+    tools{
+         maven 'Maven' 
+        }
+
+    stages 
+    {
+        stage('Build') 
+        {
+            steps
+            {
+                 git 'https://matthewmccullough@github.com/matthewmccullough/hellogitworld.git'
+                 bat "mvn -Dmaven.test.failure.ignore=true clean package"
+            }
+            post 
+            {
+                success
+                {
+                    junit '**/target/surefire-reports/TEST-*.xml'
+                    archiveArtifacts 'target/*.jar'
+                }
+            }
+        }   
+                
+        stage("Deploy to QA"){
+            steps{
+                echo("deploy to qa")
+            }
+        }             
+                
+        stage('Regression API Automation Tests') {
+            steps {
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    git 'https://github.com/TapashiRoy/RestAssuredE2EFramework.git'
+                    bat "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testRunners/testng_runner.xml"
+                    
+                }
+            }
+        }  
+        
+        stage('Publish Allure Reports') {
+           steps {
+                script {
+                    allure([
+                        includeProperties: false,
+                        jdk: '',
+                        properties: [],
+                        reportBuildPolicy: 'ALWAYS',
+                        results: [[path: '/allure-results']]
+                    ])
+                }
+            }
+        }    
+      
+        stage('Publish Extent Report'){
+            steps{
+                     publishHTML([allowMissing: false,
+                                  alwaysLinkToLastBuild: false, 
+                                  keepAll: true, 
+                                  reportDir: 'reports', 
+                                  reportFiles: 'APITestExecutionReport.html', 
+                                  reportName: 'API HTML Extent Report', 
+                                  reportTitles: ''])
+            }
+        }
+        
+        stage("Deploy to Stage"){
+            steps{
+                echo("deploy to Stage")
+            }
+        }
+        
+        stage('Sanity Automation Test') {
+            steps {
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    git 'https://github.com/TapashiRoy/RestAssuredE2EFramework.git'
+                    bat "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testRunners/testng_sanity.xml"
+                    
+                }
+            }
+        }
+        
+        
+        
+        stage('Publish API sanity Extent Report'){
+            steps{
+                     publishHTML([allowMissing: false,
+                                  alwaysLinkToLastBuild: false, 
+                                  keepAll: true, 
+                                  reportDir: 'reports', 
+                                  reportFiles: 'APISanityTestExecutionReport.html', 
+                                  reportName: 'API Sanity Extent Report',  
+                                  reportTitles: ''])
+            }
+        }
+         stage("Deploy to PROD"){
+            steps{
+                echo("deploy to PROD")
+            }
+        }        
+        
+    }
+}
