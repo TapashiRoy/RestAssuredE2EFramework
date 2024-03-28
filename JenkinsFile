@@ -12,7 +12,7 @@ pipeline
         {
             steps
             {
-                 git 'https://matthewmccullough@github.com/matthewmccullough/hellogitworld.git'
+                 git 'https://github.com/jglick/simple-maven-project-with-tests.git'
                  bat "mvn -Dmaven.test.failure.ignore=true clean package"
             }
             post 
@@ -41,7 +41,7 @@ pipeline
             }
         }  
         
-        stage('Publish Allure Reports') {
+        stage('Publish Regression Allure Reports') {
            steps {
                 script {
                     allure([
@@ -55,7 +55,7 @@ pipeline
             }
         }    
       
-        stage('Publish Extent Report'){
+        stage('Publish Regression Extent Report'){
             steps{
                      publishHTML([allowMissing: false,
                                   alwaysLinkToLastBuild: false, 
