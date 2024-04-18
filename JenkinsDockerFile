@@ -61,7 +61,7 @@ pipeline
                 currentBuild.result = 'FAILURE'
             }
             bat "docker start apitesting${BUILD_NUMBER}"
-            bat "docker cp apitesting${BUILD_NUMBER}:/app/target/APIExecutionReport.html ${WORKSPACE}/target"
+            bat "docker cp apitesting${BUILD_NUMBER}:/app/reports/APITestExecutionReport.html ${WORKSPACE}/reports"
             bat "docker rm -f apitesting${BUILD_NUMBER}"
         }
     }
@@ -76,7 +76,7 @@ pipeline
                                   alwaysLinkToLastBuild: false, 
                                   keepAll: false, 
                                   reportDir: 'target', 
-                                  reportFiles: 'APIExecutionReport.html', 
+                                  reportFiles: 'APITestExecutionReport.html', 
                                   reportName: 'API HTML Regression Extent Report', 
                                   reportTitles: ''])
             }
