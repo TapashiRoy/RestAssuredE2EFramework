@@ -5,9 +5,12 @@ import java.util.Properties;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 
+
 import com.qa.api.Configuration.Configuration;
 import com.qa.api.client.restClient;
 
+import io.qameta.allure.Allure;
+import io.qameta.allure.AllureResultsWriter;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
 
@@ -27,10 +30,12 @@ public class BaseTest {
 	@Parameters({"baseURI"})
 	@BeforeTest
 	public void setUp(String baseURI) {
-		RestAssured.filters(new AllureRestAssured());
+		RestAssured.filters(new AllureRestAssured());			
 		config = new Configuration();
-		prop = config.initProperties();	
+		prop = config.initProperties();				
 		this.baseURI = baseURI;		
 	}
+	
+	
 
 }

@@ -20,9 +20,8 @@ public class ExtentReportListener implements ITestListener {
 	
 	private static final String OUTPUT_FOLDER = "./reports/";
 	private static final String FILE_NAME = "APITestExecutionReport.html";
-
-	private static ExtentReports extent = init();
 	public static ThreadLocal<ExtentTest> test = new ThreadLocal<>();
+	private static ExtentReports extent = init();	
 	private static ExtentReports extentReports;
 
 	private static ExtentReports init() {
